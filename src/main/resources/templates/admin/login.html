@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="admin/fragments/common :: admin-head" />
+<link th:href="@{/css/admin/login.css}" rel="stylesheet" />
+</head>
+<body>
+
+	<section class="container">
+
+			<img class="slogan" th:src="@{/images/common/slogan.png}"
+				alt="slogan Brico pas cher">
+
+		<!-- Default form login -->
+		<!-- Center the row for all elements -->
+		<div class="row text-center">
+			<!-- Column with margin left-right = auto and margin top-bottom = 1em, md = mobile and desktop  -->
+			<div class="col-md-6 mx-auto my-3">
+				<div class="card card-body">
+					<h3 class="mb-4 login-label">Administration</h3>
+
+					<!-- Error shown when bad credential -->
+					<!-- ( param.error ) is a special Spring Security filed for login page -->
+					<p class="alert alert-danger" th:if="${param.error}">
+						<i class="material-icons">error</i>&nbsp;Adresse e-mail ou mot de
+						passe invalide.
+					</p>
+					<!-- Error shown when bad credential -->
+
+					<!-- Thymeleaf include csrf token with ( th:action ) automatically in Spring Security configuration  -->
+					<form th:action="@{/admin/login}" method="post">
+
+						<!-- Username -->
+						<p class="fields-title text-left mb-0">Identifiant</p>
+						<input class="form-control mb-4" type="text" name="username"
+							id="username" placeholder="username" required autofocus
+							title="Veuillez saisir votre username" maxlength="100">
+
+						<!-- Password -->
+						<p class="fields-title text-left mb-0">Mot de passe</p>
+						<input class="form-control mb-4" type="password" name="password"
+							id="password" placeholder="Entre 8 et 30 caractères" required
+							title="Votre mot de passe doit contenir entre 8 et 30 caractères"
+							pattern=".{8,30}">
+
+						<!-- Sign in button -->
+						<p>
+							<button class="btn-lg btn-outline-primary my-4" type="submit">Connexion</button>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Default form login -->
+
+	</section>
+
+	<footer th:replace="admin/fragments/common :: admin-footer"></footer>
+
+</body>
+</html>

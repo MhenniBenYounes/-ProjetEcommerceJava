@@ -1,0 +1,93 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="admin/fragments/common :: admin-head" />
+</head>
+<body>
+	<header th:replace="admin/fragments/common :: nav-admin"></header>
+	<section class="container">
+
+		<div class="container great-title">
+			<span>Ajouter Produit</span>
+			<hr>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 mx-auto my-3">
+					<div class="card card-body">
+						<h3 class="mb-4 subscribe-label">Ajouter Produit</h3>
+						<form th:action="@{/admin/produits/add}" th:object="${produit}"
+							method="post" autocomplete="off" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="barcode">Code Barre : </label> <input
+									class="form-control input-lg" th:field="*{barcode}"
+									placeholder="Code Barre" name="barcode" maxlength="30"
+									autofocus required> <span class="text-danger"
+									th:errors="*{barcode}"> </span>
+							</div>
+							<div class="form-group">
+								<label for="barcode">Nom Produit : </label> <input
+									class="form-control input-lg" th:field="*{name}"
+									placeholder="Nom Produit" name="name" maxlength="30"
+									required> <span class="text-danger" th:errors="*{name}">
+								</span>
+							</div>
+							<div class="form-group">
+								<label for="categorie">Catégorie : </label><select
+									th:field="*{categorie}" name="categorie">
+									<option value="">Choisir une catégorie</option>
+									<option th:each="cat : ${categories}" th:value="${cat.id}"
+										th:text="${cat.name}"></option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="marque">Marque : </label><select
+									th:field="*{marque}">
+									<option value="">Choisir une marque</option>
+									<option th:each="marque : ${marques}" th:value="${marque.id}"
+										th:text="${marque.name}"></option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="barcode">Description : </label> <input
+									class="form-control input-lg" th:field="*{description}"
+									placeholder="Description" name="description" type="text"
+									maxlength="60" required> <span class="text-danger"
+									th:errors="*{description}"> </span>
+							</div>
+							<div class="form-group">
+								<label for="barcode">Quantité : </label> <input
+									class="form-control input-lg" th:field="*{stock}"
+									placeholder="Quantité" name="stock" type="number" required>
+								<span class="text-danger" th:errors="*{stock}"> </span>
+							</div>
+							<div class="form-group">
+								<label for="prixHT">PrixHT : </label> <input
+									class="form-control input-lg" th:field="*{prixHT}"
+									placeholder="prixHT" name="prixHT" type="text" required>
+								<span class="text-danger" th:errors="*{prixHT}"> </span>
+							</div>
+
+							<div class="form-group">
+								<label for="file">Image : </label> <input
+									class="form-control input-lg"
+									placeholder="image" name="file" type="file" required>
+								<span class="text-danger" th:errors="*{image}"> </span>
+							</div>
+
+							<div>
+								<small>Tous les champs sont obligatoires</small>
+							</div>
+							<button class="btn-lg btn-success my-4 btn-block" type="submit">
+								Ajouter</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<footer th:replace="admin/fragments/common :: admin-footer"></footer>
+
+</body>
+</html>

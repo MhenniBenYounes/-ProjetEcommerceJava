@@ -1,0 +1,66 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="users/fragments/common :: common-head" />
+<link th:href="@{/css/users/pwdForgotReset.css}" rel="stylesheet" />
+</head>
+<body>
+
+	<header th:replace="users/fragments/common :: common-header"></header>
+
+	<section class="container">
+
+		<div class="container great-title">
+			<span>Mot de passe oublié</span>
+			<hr>
+		</div>
+
+		<div class="container">
+			<!-- Center the row for all elements -->
+			<div class="row text-center">
+				<!-- Column with margin left-right = auto and margin top-bottom = 1em, md = mobile and desktop  -->
+				<!-- mx = margin left and right     my = margin top and bottom -->
+				<div class="col-md-6 mx-auto my-3">
+					<div class="card card-body">
+
+						<p>Saisissez votre adresse e-mail inscrite sur le site afin de
+							vous envoyer un lien pour réinitialiser votre mot de passe.</p>
+
+						<p class="alert alert-danger error-message"
+							th:if="${badMail}">
+							<i class="material-icons">error_outline&nbsp;</i><span
+								th:text="${badMail}"></span>
+						</p>
+
+						<p class="alert alert-success success-message"
+							th:if="${forgotMailSent}">
+							<i class="material-icons">check_circle&nbsp;</i><span
+								th:text="${forgotMailSent}"></span>
+						</p>
+
+						<form th:action="@{/forgot-password}" th:object="${user}"
+							autocomplete="off" method="post">
+
+							<div class="form-group">
+								<div class="input-group">
+									<img class="mail-pic" th:src="@{images/users/sendMail.png}"><input
+										th:field="*{email}" id="email" name="email"
+										placeholder="Votre adresse e-mail" class="form-control"
+										type="email" autofocus>
+								</div>
+							</div>
+							<div class="form-group">
+								<button class="btn-lg btn-outline-success my-2" type="submit">
+									<i class="material-icons sentMail-icon">cloud_upload</i>&nbsp;Envoyer
+								</button>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<footer th:replace="users/fragments/common :: common-footer"></footer>
+</body>
+</html>

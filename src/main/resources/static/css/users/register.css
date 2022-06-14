@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+/* Propriétes du contenu card*/
+.card-body {
+	background-color: #F5F5F5;
+}
+
+/* Propriétés du titre du card */
+.subscribe-label {
+	letter-spacing: .3em;
+}
+/* Propriétés bouton radio genre */
+#radioF, #radioS{
+	margin-left:.5em;
+}
+/* Propriétés du lien private policy, souligné pour être plus voyant*/
+.link-terms:link {
+	text-decoration: underline;
+}
+/* Propriétés du la fêntre modal*/
+.modal-body>p {
+	text-align: left;
+}
+small{
+	color:red;
+}

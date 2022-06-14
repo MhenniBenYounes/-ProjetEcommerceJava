@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- Bootstrap CSS -->
+<link rel="icon" type="image/png" th:href="@{/images/common/logo.png}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/common/error.css}" />
+<title>BRICO PAS CHER -- DISCOUNT DE BRICOLAGE</title>
+</head>
+<body>
+
+	<section class="container">
+	
+			<img class="img-fluid slogan" th:src="@{/images/common/slogan.png}"
+				alt="slogan Brico pas cher">
+
+		<article class="errorText">
+			<p>La ressource demandée existe mais vous avez mal interpréter votre rêquete.</p>
+			<p>Merci de compléter le bon syntaxe de votre rêquete pour avoir la bonne ressource.</p>
+		</article>
+
+		<div class="backUsersLink">
+			<!-- Partie Visiteur et client enregistré-->
+			<p>
+				<a sec:authorize="isAnonymous() or hasRole('USER')" th:href="@{/}">Retour
+					vers la page d'accueil</a>
+			</p>
+			<p>
+				<a sec:authorize="hasRole('USER')" th:href="@{/user/myAccount}">Retour
+					vers votre compte</a>
+			</p>
+			<!-- Partie Visiteur et client enregistré-->
+			<!-- Partie admin enregistré -->
+			<p>
+				<a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/}">Retour
+					vers la page d'administration</a>
+			</p>
+			<!-- Partie admin enregistré -->
+		</div>
+
+	</section>
+
+	<footer>
+		<!-- Optional JavaScript for Bootstrap-->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	</footer>
+</body>
+</html>

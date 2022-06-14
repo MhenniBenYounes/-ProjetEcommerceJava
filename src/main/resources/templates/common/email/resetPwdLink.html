@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Réinitialisation Mot de passe</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>BRICO PAS CHER -- DISCOUNT DE BRICOLAGE</title>
+</head>
+<body
+	style="display: flex; min-height: 100vh; flex-direction: column; background-color: #DCDCDC;">
+
+	<figure>
+		<img th:src="|cid:${slogan}|"
+			style="border-radius: 0.5em; width: 16em; height: 5em;">
+	</figure>
+
+	<article>
+		<p style="margin: 1.5em; font-size: 1.5em;"
+			th:text="${'Bonjour, ' + userIdentity + ' Nous sommes très heureux de vous compter parmi nous.'}"></p>
+	</article>
+	<article>
+		<p style="margin: 1.5em; font-size: 1.5em;">
+			Veuillez cliquez sur ce&nbsp;<a
+				th:href="@{${appUrl} + ${urlToken} + ${token}}">lien</a>&nbsp;pour
+			réinitialiser votre mot de passe.
+		</p>
+	</article>
+
+</body>
+</html>

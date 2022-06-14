@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+/* Partie pwdForgot.html */
+
+/* Propriétes du contenu card commune pour les 2 html*/
+.card-body {
+	background-color: #F5F5F5;
+}
+
+.mail-pic {
+	width: 2.8em;
+	height: 2.8em;
+}
+
+.sentMail-icon {
+	font-size: 1.5em;
+}
+
+/* Partie pwdReset.html */
+.reset-icon {
+	font-size: 1.5em;
+}

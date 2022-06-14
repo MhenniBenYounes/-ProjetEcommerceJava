@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+/* Mise en forme du logo du site */
+.slogan {
+	margin-top: 1em;
+	border-radius: 0.5em;
+	width: 16em;
+	height: 5em;
+}
+.login-label{
+	color : red;
+	font-size: 2em;
+	letter-spacing: .2em;
+	text-transform: uppercase;
+}

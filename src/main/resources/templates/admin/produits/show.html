@@ -1,0 +1,52 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="admin/fragments/common :: admin-head" />
+</head>
+<body>
+	<header th:replace="admin/fragments/common :: nav-admin"></header>
+	<section class="container-fluid">
+
+		<div class="great-title">
+			<span>Liste des Produits</span>
+			<hr>
+		</div>
+
+		<div>
+			<div class="row">
+				<div class="row col-md-12 mx-auto my-3">
+					<div class="col-md-4 col-lg-4">
+						<img width="400" height="400"
+							th:attr="alt=${produit.name},src=${'data:image/png;base64,' + produit.imageBase64}">
+					</div>
+					<div class="col-md-8  col-lg-4">
+						<h1 th:text="${produit.name}"></h1>
+						<p>
+							Description : <span th:text="${produit.description}"></span>
+						</p>
+						<p>
+							Code Barre : <span th:text="${produit.barcode}"></span><br>
+							Quantité : <span th:text="${produit.stock}"></span><br> Prix
+							HT : <span th:text="${#numbers.formatCurrency(produit.prixHT)}"></span><br>
+							Date Création : <span
+								th:text="${#temporals.format(produit.creationDate,'dd/MM/yyyy')}"></span><br>
+							Date Modification : <span
+								th:text="${#temporals.format(produit.updatingDate,'dd/MM/yyyy')}"></span>
+						</p>
+						<div class="btn-group">
+							<a class="btn btn-warning"
+								th:href="@{/admin/produits/update(id=${produit.id})}">Mettre
+								à jour</a>
+							<button class="btn btn-danger deleteBtn"
+								th:data-href="@{/admin/produits/delete/{produitId}(produitId=${produit.id})}">Supprimer</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<footer th:replace="admin/fragments/common :: admin-footer"></footer>
+
+</body>
+</html>

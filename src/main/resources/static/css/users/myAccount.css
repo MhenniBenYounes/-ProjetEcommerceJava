@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+/* Propriétés info de mise à jour profil */
+.profile-info{
+	text-transform: uppercase;
+	font-size : xx-large;
+	text-decoration: underline;
+}
+
+/* Forme du l'onglet qui regroupe les pages (mon profil, mes commandes) */
+.tabs-container {
+	margin-top: 3em;
+}
+/* Propriétés bouton radio genre */
+#radioF, #radioS{
+	margin-left:.5em;
+}
+
+/* Forme de l'astérisque et de l'indication de la page mon profil */
+.asterisk, small {
+	color: red;
+}

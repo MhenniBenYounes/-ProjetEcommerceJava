@@ -1,0 +1,204 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="fr">
+<head th:fragment="common-head">
+<!-- Tags pour robot Google de recherche -->
+<meta name="description"
+	content="Bricolage à prix discount pour les particuliers, matériel de haute qualité.Marque bosh, Hilti, Facom, Black & Decker, Tollens.Venez découvrir notre boutique en ligne et profiter de large choix dans plusieurs rayons : Quincaillerie, Electricité, Menuiserie, Plomberie, Droguerie, Peinture." />
+<!-- Tags pour robot Google de recherche -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- Bootstrap CSS -->
+<link rel="icon" type="image/png" th:href="@{/images/common/logo.png}" />
+<!-- Custom styles for this template -->
+<!-- Font by Google -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<!-- Font by Google -->
+<link rel="stylesheet" th:href="@{/css/users/common.css}" />
+<title>BRICO PAS CHER -- DISCOUNT DE BRICOLAGE</title>
+</head>
+<body>
+	<!-- Fragment to include in top for every html pages on FrontEnd side -->
+	<header th:fragment="common-header">
+
+		<!-- Top-Info Banner in each pages -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+					<div class="site-name text-left">
+						<a title="Page d'accueil" th:href="@{/}">WWW.BRICO-PAS-CHER.COM</a>
+					</div>
+				</div>
+				<div class="col">
+					<div class="phone-number text-right text-inline">
+						<i class="material-icons">phone_in_talk</i>(0033)01.26.83.51.23
+					</div>
+				</div>
+				<div class="col">
+					<div class="shedule text-right">Ouvert 7j/7 de 08h à 19h</div>
+				</div>
+				<div class="col">
+					<div class="delivery text-right">
+						<a th:href="@{/deliveryTerms#FR-delivery}">Livraison gratuite
+							en France</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Top-Info Banner in each pages -->
+
+		<!-- barre de navigation -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" th:href="@{/}" title="Page d'accueil"><img
+				th:src="@{/images/common/slogan.png}" alt="slogan Brico pas cher"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+				<!-- Align element in left with mr-auto-->
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Catégories</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Plomberie</a> <a
+								class="dropdown-item" href="#">Quincaillerie</a> <a
+								class="dropdown-item" href="#">Peinture</a> <a
+								class="dropdown-item" href="#">Droguerie</a> <a
+								class="dropdown-item" href="#">Serrurerie</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Nos marques</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Bosh</a> <a
+								class="dropdown-item" href="#">Hilti</a> <a
+								class="dropdown-item" href="#">Black &#38; Decker</a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contactez-Nous</a></li>
+					<li><form class="form-inline my-2 my-lg-0">
+							<input class="form-control mr-sm-2" type="search"
+								aria-label="Search" name="search"
+								placeholder="Rechercher un produit">
+							<button class="btn btn-outline-success my-2 my-sm-0"
+								type="submit">Rechercher</button>
+						</form></li>
+				</ul>
+				<!-- Align element in left with mr-auto-->
+
+				<!-- Align element to the right without mr-auto-->
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link"
+						sec:authorize="isAnonymous() OR hasRole('ADMIN')"
+						th:href="@{/login}">Mon compte</a></li>
+					<li class="nav-item"><a class="nav-link"
+						sec:authorize="hasRole('USER')" th:href="@{/user/myAccount}">Mon
+							compte</a></li>
+					<li class="nav-item"><a class="nav-link"
+						sec:authorize="hasRole('USER')" th:href="@{/logout}">Se
+							déconnecter</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/cart}">Panier</a></li>
+				</ul>
+				<!-- Align element to the right without mr-auto-->
+
+			</div>
+		</nav>
+		<!-- barre de navigation -->
+
+	</header>
+	<!-- Fragment to include in top for every html pages on FrontEnd side -->
+
+	<!-- Fragment to include in bottom for every html pages on FrontEnd side -->
+	<footer class="container-fluid" th:fragment="common-footer">
+		<div class="container-fluid">
+			<!-- Footer links -->
+			<div class="row mt-3">
+				<!-- Grid column -->
+				<div class="col text-left">
+					<h4>Service Client</h4>
+					<ul>
+						<li><a sec:authorize="isAnonymous() OR hasRole('ADMIN')"
+							th:href="@{/login}">Mon Compte</a></li>
+						<li><a sec:authorize="hasRole('USER')"
+							th:href="@{/user/myAccount}">Mon Compte</a></li>
+						<li><a sec:authorize="hasRole('USER')" th:href="@{/logout}">Se
+								déconnecter</a></li>
+						<li><a th:href="@{/quote}">Devis Gratuit</a></li>
+						<li><a th:href="@{/contact}">Contactez-Nous</a></li>
+					</ul>
+				</div>
+				<!-- Grid column -->
+				<hr class="w-100 clearfix d-md-none">
+				<!-- Grid column -->
+				<div class="col">
+					<h4>A Propos</h4>
+					<ul>
+						<li><a th:href="@{/about}">Qui Sommes-Nous</a></li>
+						<li><a th:href="@{/cgv}">Conditions Générales de Ventes</a></li>
+						<li><a th:href="@{/deliveryTerms}">Frais et Délais des
+								Livraisons</a></li>
+						<li><a th:href="@{/warrantyTerms}">Garanties des Articles</a></li>
+					</ul>
+				</div>
+				<!-- Grid column -->
+				<hr class="w-100 clearfix d-md-none">
+				<!-- Grid column -->
+				<div class="col social-networks">
+					<h4>Nous Joindre</h4>
+					<ul>
+						<li><i class="material-icons">contact_phone</i>&nbsp;(0033)01.26.83.51.23</li>
+						<li><i class="material-icons">schedule</i>&nbsp;Ouvert
+							7J/7&nbsp;&nbsp;&nbsp;08H / 19H</li>
+						<li><i class="material-icons">email</i>&nbsp;contact@bricopascher.com</li>
+						<li><i class="material-icons">location_on</i>&nbsp;35 Avenue
+							Jean Jaurès 93300 Aubervillers</li>
+						<li class="list-inline-item"><a
+							th:href="@{https://www.google.com}"><i
+								class="fab fa-facebook"></i><img class="facebook-img"
+								th:src="@{/images/users/facebook.png}"> </a></li>
+						<li class="list-inline-item"><a
+							th:href="@{https://www.google.com}"><i class="fab fa-twitter"></i><img
+								class="twitter-img" th:src="@{/images/users/twitter.png}"></a></li>
+						<li class="list-inline-item"><a
+							th:href="@{https://www.google.com}"><i
+								class="fab fa-instagram"></i><img class="instagram-img"
+								th:src="@{/images/users/instagram.png}"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<p class="text-center">
+						<i class="material-icons">copyright</i><a
+							href="https://idprocess.fr/">Idprocess 2020 - Tous droits
+							réservés</a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	</footer>
+	<!-- Fragment to include in bottom for every html pages on FrontEnd side -->
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="users/fragments/common :: common-head" />
+<link th:href="@{/css/users/myAccount.css}" type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<header th:replace="users/fragments/common :: common-header"></header>
+
+	<section class="container">
+
+		<div class="container great-title">
+			<span>Mon espace</span>
+			<hr>
+		</div>
+
+		<!-- Dashboard for client on tabs form -->
+		<article class="container tabs-container">
+
+			<!-- Navigation tabs -->
+			<ul class="nav nav-tabs">
+
+				<li class="nav-item onglet waves-effect waves-light"><a
+					class="nav-link active" data-toggle="tab" href="#myProfile">Mon
+						profil</a></li>
+
+				<li class="nav-item waves-effect waves-light"><a
+					class="nav-link" data-toggle="tab" href="#myOrders">Mes
+						commandes</a></li>
+
+			</ul>
+			<!-- Navigation tabs -->
+
+			<div class="tab-content card card-body">
+
+				<!-- My profil tabs -->
+				<div class="tab-pane fade show active" id="myProfile">
+
+					<div class="row">
+						<article class="col d-flex justify-content-around">
+							<p class="text-success profile-info" th:if="${profileUpdated}"
+								th:text="${profileUpdated}"></p>
+						</article>
+					</div>
+
+					<form th:action="@{/user/updateMyProfile}" th:object="${user}"
+						method="post">
+
+						<div class="form-row">
+							<!-- Gender Field -->
+							<div class="col mb-3">
+								<input type="radio" id="radioM" name="gender" th:field="*{gender}"
+									value="Monsieur"> <label class="radio-inline">Monsieur</label>
+								<input type="radio" id="radioF" name="gender" th:field="*{gender}"
+									value="Madame"> <label class="radio-inline">Madame</label>
+								<input type="radio" id="radioS" name="gender" th:field="*{gender}"
+									value="Société"> <label class="radio-inline">Société</label>
+								<div class="text-danger" th:errors="*{gender}"></div>
+							</div>
+
+						</div>
+
+						<div class="form-row">
+
+							<!-- lastName Field -->
+							<div class="col mb-3">
+								<label for="lastName">Nom<span class="asterisk">&nbsp;*</span></label><input
+									class="form-control" th:field="*{lastName}" name="lastName"
+									type="text" maxlength="30" required> <span
+									class="text-danger" th:errors="*{lastName}"></span>
+							</div>
+							<!-- firstName Field -->
+							<div class="col mb-3">
+								<label for="firstName">Prénom<span class="asterisk">&nbsp;*</span></label><input
+									class="form-control" th:field="*{firstName}" name="firstName"
+									type="text" maxlength="30" required> <span
+									class="text-danger" th:errors="*{firstName}"></span>
+							</div>
+							<!-- birthDate Field -->
+							<div class="col mb-3">
+								<label for="birthDate">Date de naissance</label><input
+									class="form-control" th:field="*{birthDate}"
+									placeholder="Votre date de naissance" name="birthDate"
+									type="date" min="1920-01-01" max="2015-12-31"
+									oninvalid="setCustomValidity('Date de naissance entre 01/01/1920 et 31/12/2015')"
+									onchange="try{setCustomValidity('')}catch(e){}"> <span
+									class="text-danger" th:errors="*{birthDate}"></span>
+							</div>
+							<!-- phoneNumber Field -->
+							<div class="col mb-3">
+								<label for="phoneNumber">Téléphone de contact</label> <input
+									class="form-control input-lg" th:field="*{phoneNumber}"
+									placeholder="ex : 0622334455" name="phoneNumber" type="tel"
+									title="Téléphone français uniquement les 10 chiffres!"
+									pattern="[0-9]{10}"> <span class="text-danger"
+									th:errors="*{phoneNumber}"> </span>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<!-- adress Field -->
+							<div class="col mb-3">
+								<label for="adress">Adresse</label> <input
+									class="form-control input-lg" th:field="*{adress}"
+									placeholder="Votre adresse de livraison" name="adress"
+									type="text" maxlength="70"
+									title="Votre adresse maximum 70 caractères"> <span
+									class="text-danger" th:errors="*{adress}"> </span>
+							</div>
+							<!-- city Field -->
+							<div class="col mb-3">
+								<label for="city">Ville</label><input
+									class="form-control input-lg" th:field="*{city}"
+									placeholder="Votre ville de livraison" name="city" type="text"
+									maxlength="40" title="Votre ville maximum 40 caractères">
+								<span class="text-danger" th:errors="*{city}"> </span>
+
+							</div>
+							<!-- zipCode Field -->
+							<div class="col mb-3">
+								<label for="zipCode">Code postal</label><input
+									class="form-control input-lg" th:field="*{zipCode}"
+									placeholder="ex : 75001" name="zipCode" type="text"
+									title="Votre code postal maximum 5 chiffres" pattern="[0-9]{5}">
+								<span class="text-danger" th:errors="*{zipCode}"> </span>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<!-- email Field -->
+							<div class="col mb-3">
+								<label for="email">E-mail<span class="asterisk">&nbsp;*</span></label><input
+									class="form-control" th:field="*{email}" name="email"
+									type="email" maxlength="60" required> <span
+									class="text-danger" th:errors="*{email}"></span> <span
+									class="text-danger" th:if="${usedMail}" th:text="${usedMail}"></span>
+
+							</div>
+							<!-- password Field -->
+							<div class="col mb-3">
+								<label for="password">Mot de passe<span class="asterisk">&nbsp;*</span></label>
+								<input class="form-control input-lg" th:field="*{password}"
+									placeholder="Mot de passe: 8 à 30 caractères" id="password"
+									name="password" type="password" pattern=".{8,30}"
+									title="Votre mot de passe doit contenir entre 8 et 30 caractères"
+									required> <span class="text-danger"
+									th:errors="*{password}"></span> <span class="text-danger"
+									th:if="${badPwd}" th:text="${badPwd}"></span>
+							</div>
+							<!-- confirmPassword Field -->
+							<div class="col mb-3">
+								<label for="confirmPassword">Confirmez mot de passe<span
+									class="asterisk">&nbsp;*</span>
+								</label><input class="form-control input-lg"
+									th:field="*{confirmPassword}"
+									placeholder="Confirmez votre mot de passe" id="confirmPassword"
+									name="confirmPassword" type="password" required> <span
+									class="text-danger" th:if="${confirmPwd}"
+									th:text="${confirmPwd}"></span>
+							</div>
+						</div>
+
+						<div class="d-flex justify-content-around">
+							<button
+								class="d-flex justify-content-start btn-lg btn-outline-warning my-4"
+								type="submit">Mettre à jour mon profil</button>
+							<button
+								class="d-flex justify-content-end btn-lg btn btn-outline-secondary my-4"
+								type="reset" value="Reset">Réinitialiser</button>
+						</div>
+						<div>
+							<small>* Champs obligatoires pour valider votre mise à
+								jour</small>
+						</div>
+
+					</form>
+
+				</div>
+				<!-- My profil tabs -->
+
+				<!-- My orders tabs -->
+				<div class="tab-pane fade" id="myOrders">
+					<p>En cours de développement.</p>
+				</div>
+				<!-- My orders tabs -->
+
+			</div>
+		</article>
+		<!-- Dashboard for client on tabs form -->
+
+	</section>
+	<!-- End User Account section -->
+
+	<footer th:replace="users/fragments/common :: common-footer"></footer>
+	<script th:src="@{/js/users/pwdValidation.js}"></script>
+
+</body>
+</html>

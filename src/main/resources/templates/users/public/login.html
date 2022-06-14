@@ -1,0 +1,128 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="fr">
+<head th:replace="users/fragments/common :: common-head" />
+<link th:href="@{/css/users/login.css}" rel="stylesheet" />
+</head>
+<body>
+
+	<header th:replace="users/fragments/common :: common-header"></header>
+
+	<section class="container">
+
+		<div class="container great-title">
+			<span>client enregistré</span>
+			<hr>
+		</div>
+
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-6 mx-auto"></div>
+			</div>
+		</div>
+
+		<!-- Default form login -->
+		<div class="container">
+			<!-- Center the row for all elements -->
+			<div class="row text-center">
+				<!-- Column with margin left-right = auto and margin top-bottom = 1em, md = mobile and desktop  -->
+				<div class="col-md-6 mx-auto my-3">
+					<div class="card card-body">
+
+						<!-- Message from controller when account verification success -->
+						<p class="alert alert-success success-message"
+							th:if="${registerDone}">
+							<i class="material-icons">check_circle&nbsp;</i><span
+								th:text="${registerDone}"></span>
+						</p>
+						<!-- Message from controller when account verification success -->
+
+						<!-- Error shown when bad credential -->
+						<!-- ( param.error ) is a special Spring Security filed for login page -->
+						<p class="alert alert-danger" th:if="${param.error}">
+							<i class="material-icons">error</i>&nbsp;Adresse e-mail ou mot de
+							passe invalide.
+						</p>
+						<!-- Error shown when bad credential -->
+
+						<!-- Message from controller when account verification failed -->
+						<p class="alert alert-danger error-message" th:if="${badLink}">
+							<i class="material-icons">error_outline&nbsp;</i><span
+								th:text="${badLink}"></span>
+						</p>
+						<!-- Message from controller when account verification failed -->
+
+						<!-- Message from controller when reset password success -->
+						<p class="alert alert-success success-message"
+							th:if="${pwdResetDone}">
+							<i class="material-icons">check_circle&nbsp;</i><span
+								th:text="${pwdResetDone}"></span>
+						</p>
+						<!-- Message from controller when reset password success -->
+
+						<!-- Thymeleaf include csrf token with ( th:action ) automatically in Spring Security configuration  -->
+						<form th:action="@{/login}" method="post">
+
+							<!-- Email -->
+							<p class="fields-title text-left mb-0">E-mail</p>
+							<input class="form-control mb-4" type="email" name="email"
+								id="email" placeholder="Adresse e-mail" required autofocus
+								title="Veuillez saisir votre adresse e-mail" maxlength="100">
+
+							<!-- Password -->
+							<p class="fields-title text-left mb-0">Mot de passe</p>
+							<input class="form-control mb-4" type="password" name="password"
+								id="password" placeholder="Entre 8 et 30 caractères" required
+								title="Votre mot de passe doit contenir entre 8 et 30 caractères"
+								pattern=".{8,30}">
+
+							<!-- Remember me -->
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input"
+									id="rememberMe" value="rememberMe"> <label
+									class="custom-control-label" for="rememberMe">Se
+									souvenir de moi</label>
+							</div>
+
+							<!-- Sign in button -->
+							<button id="login" class="btn-lg btn-outline-primary my-4"
+								type="submit">Connexion</button>
+							<div class="d-flex justify-content-around">
+								<article>
+									<p>
+										<a class="link-pwdForget" href="/forgot-password"><i
+											class="material-icons">play_arrow</i>Mot de passe oublié?</a>
+									</p>
+								</article>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Default form login -->
+
+		<!-- Register in button -->
+		<article sec:authorize="!hasRole('USER')">
+			<div class="container great-title">
+				<span>nouveau client</span>
+				<hr>
+			</div>
+
+			<div class="container">
+				<div class="row text-center">
+					<div class="col-12">
+						<a th:href="@{/register}"><button
+								class="btn btn-lg my-4 register-button" type="submit">Créer
+								mon compte</button></a>
+					</div>
+				</div>
+			</div>
+		</article>
+		<!-- Register in button -->
+	</section>
+
+	<footer th:replace="users/fragments/common :: common-footer"></footer>
+	<script th:src="@{/js/users/rememberMe.js}"></script>
+</body>
+</html>

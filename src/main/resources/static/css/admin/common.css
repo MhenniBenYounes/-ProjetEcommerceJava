@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+/********************************************
+*      Partie header pour toutes les pages  *
+*********************************************/
+
+/*
+ * Couleur arrière plan de toutes les pages
+ * Les 3 premiers règles de mise en page, pour obtenir des pages au dessus du Footer avec flex
+ */
+html, body {
+	/* Affichage en flex du contenu body pour le web responsive */
+	display: flex;
+	/* pour avoir footer always in bottom, même si body est vide */
+	min-height: 100vh;
+	/* Le redimensionnement se fait par colonne (par block) et row par ligne */
+	flex-direction: column;
+	background-color: #DCDCDC;
+}
+
+/* L'élément est dimensionné selon ses propriétés width et height mais 
+peut grandir pour absorber l'espace libre disponible dans le conteneur 
+flexible ou rétrécir à sa taille minimale pour rentrer dans le conteneur. 
+Cette valeur est équivalente à "flex: 1 1 auto". 
+section est présente sur toutes les pages, donc une seule déclaration dans header concerne tous.*/
+section {
+	flex: auto;
+}
+/* Aligner les pictogrammes SVG de Google Fonts en TOP pour qu'ils soient sur 
+la même ligne que le texte pour toutes les pages.*/
+i {
+	vertical-align: top;
+}

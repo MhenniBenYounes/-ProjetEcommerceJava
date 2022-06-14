@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+html, body {
+	/* Affichage en flex du contenu body pour le web responsive */
+	display: flex;
+	/* pour avoir footer always in bottom, même si body est vide */
+	min-height: 100vh;
+	/* Le redimensionnement se fait par colonne (par block) et row par ligne */
+	flex-direction: column;
+	background-color: #DCDCDC;
+}
+
+/* L'élément est dimensionné selon ses propriétés width et height mais 
+peut grandir pour absorber l'espace libre disponible dans le conteneur 
+flexible ou rétrécir à sa taille minimale pour rentrer dans le conteneur. 
+Cette valeur est équivalente à "flex: 1 1 auto". 
+section est présente sur toutes les pages, donc une seule déclaration dans header concerne tous.*/
+section {
+	flex: auto;
+}
+/* Mise en forme du logo du site */
+.slogan {
+	margin-top: 1em; border-radius : 0.5em;
+	width: 17em;
+	height: 5em;
+	border-radius: 0.5em;
+}
+/* Mise en forme du texte rassurant pour users */
+.errorText {
+	margin-top: 2em;
+	font-size: 2em;
+	color: black;
+	text-align: center;
+}
+/* Mise en forme du texte du lien selon users authentification pour back link */
+.backUsersLink p {
+	margin-top: 2em;
+	font-size: 2em;
+	text-align: center;
+}
+/* Changement exprès des couleurs des liens vers le backHome en vert pour rassurer */
+.backUsersLink a:hover {
+	color: green;
+}
+/* Mise en forme du lien de sortie surligné vers les pages de backHome */
+.backUsersLink a:link {
+		text-decoration: underline;
+}

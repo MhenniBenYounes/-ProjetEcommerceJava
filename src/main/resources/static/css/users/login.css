@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+/* Propriétes du contenu card*/
+.card-body{
+	background-color: #F5F5F5;
+}
+
+/* Propriétés du titre du card */
+.login-label {
+	letter-spacing: .3em;
+}
+
+/* Propriétés du lien de mot de passe perdu, souligné pour être plus voyant*/
+.link-pwdForget:link {
+	text-decoration: underline;
+}
+
+/* Propriétés du bouton URL(/register) avant le passage de la souris*/
+.register-button {
+	color: #fff;
+	text-decoration: none;
+	background: #808080;
+	padding: 1em;
+	border-radius: 0.5em;
+	display: inline-block;
+	border: none;
+	transition: all 0.4s ease 0s;
+}
+/* Propriétés du bouton URL(/register) après le passage de la souris*/
+.register-button:hover {
+	background: #DF6D14;
+	letter-spacing: 0.3em;
+	transition: all 0.4s ease 0s;
+}

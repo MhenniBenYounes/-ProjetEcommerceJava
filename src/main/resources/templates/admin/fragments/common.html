@@ -1,0 +1,76 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="fr">
+<head th:fragment="admin-head">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- pour Ajax -->
+<meta name="_csrf" th:content="${_csrf.token}" />
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="icon" type="image/png" th:href="@{/images/common/logo.png}">
+<!-- Custom styles for this template -->
+<!-- Font by Google for site -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link th:href="@{/css/admin/common.css}" rel="stylesheet">
+<title>BRICO PAS CHER -- ADMINISTRATION</title>
+</head>
+<body>
+	<!-- Fragment to include for every html pages in BackEnd to do -->
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark"
+		th:fragment="nav-admin">
+		<a class="navbar-brand" href="/admin/">Page d'accueil</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarsExampleDefault"
+			aria-controls="navbarsExampleDefault" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Clients</a></li>
+				<li class="nav-item active"><a class="nav-link" href="#">Catégories</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">Produits</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/admin/produits/add">Ajouter
+							produit</a> <a class="dropdown-item" href="/admin/produits">Lister
+							poduits</a>
+					</div></li>
+				<!-- <li class="nav-item active"><a class="nav-link" href="#">Produits</a></li> -->
+			</ul>
+
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link"
+					sec:authorize="hasRole('ADMIN')" th:href="@{/admin/logout}">Se
+						déconnecter</a></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- end of Fragment to include for every html pages in BackEnd to do -->
+
+	<!-- Begin of Footer for all page in the BackEnd side -->
+	<footer th:fragment="admin-footer">
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script
+			th:src="@{/js/admin/main.js}"></script>
+
+	</footer>
+	<!-- End of Footer for all page in the BackEnd side -->
+</body>
+</html>

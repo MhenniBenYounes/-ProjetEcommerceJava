@@ -1,0 +1,204 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="users/fragments/common :: common-head" />
+<link th:href="@{/css/users/register.css}" rel="stylesheet" />
+</head>
+<body>
+	<header th:replace="users/fragments/common :: common-header"></header>
+
+	<section class="container">
+
+		<div class="container great-title">
+			<span>Nouveau client</span>
+			<hr>
+		</div>
+
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-6 mx-auto my-3">
+					<div class="card card-body">
+						<h3 class="mb-4 subscribe-label">Inscription</h3>
+
+						<!-- Message from controller when email already exist -->
+						<p class="alert alert-danger error-message" th:if="${usedMail}">
+							<i class="material-icons">error_outline&nbsp;</i><span
+								th:text="${usedMail}"></span>
+						</p>
+						<!-- Message from controller when email already exist -->
+
+						<!-- Message from controller when Password wrong -->
+						<p class="alert alert-danger error-message" th:if="${badPwd}">
+							<i class="material-icons">error_outline&nbsp;</i><span
+								th:text="${badPwd}"></span>
+						</p>
+						<!-- Message from controller when Password wrong -->
+
+						<!-- Message from controller when confirmPassword wrong -->
+						<p class="alert alert-danger error-message" th:if="${confirmPwd}">
+							<i class="material-icons">error_outline&nbsp;</i><span
+								th:text="${confirmPwd}"></span>
+						</p>
+						<!-- Message from controller when confirmPassword wrong -->
+
+						<!-- Message from controller when registration well done -->
+						<p class="alert alert-success success-message"
+							th:if="${completeRegister}">
+							<i class="material-icons">check_circle&nbsp;</i><span
+								th:text="${completeRegister}"></span>
+						</p>
+						<!-- Message from controller when registration well done -->
+
+						<!-- Message from controller when Error incoming to sent Mail -->
+						<p class="alert alert-danger error-message" th:if="${badLink}">
+							<i class="material-icons">error_outline&nbsp;</i><span
+								th:text="${badLink}"></span>
+						</p>
+						<!-- Message from controller when Error incoming to sent Mail -->
+
+						<form th:action="@{/register}" th:object="${user}" method="post"
+							autocomplete="off">
+
+							<div class="form-group">
+								<input type="radio" id="radioM" name="gender"
+									th:field="*{gender}" value="Monsieur" checked> <label
+									class="radio-inline">Monsieur</label> <input type="radio"
+									id="radioF" name="gender" th:field="*{gender}" value="Madame">
+								<label class="radio-inline">Madame</label> <input type="radio"
+									id="radioS" name="gender" th:field="*{gender}" value="Société">
+								<label class="radio-inline">Société</label>
+
+								<div class="text-danger" th:errors="*{gender}"></div>
+							</div>
+
+							<div class="form-group">
+								<input class="form-control input-lg" th:field="*{lastName}"
+									placeholder="Nom de famille" name="lastName" maxlength="30"
+									autofocus required> <span class="text-danger"
+									th:errors="*{lastName}"> </span>
+							</div>
+							<div class="form-group">
+								<input class="form-control input-lg" th:field="*{firstName}"
+									placeholder="Prénom" name="firstName" type="text"
+									maxlength="30" required> <span class="text-danger"
+									th:errors="*{firstName}"> </span>
+							</div>
+							<div class="form-group">
+								<input class="form-control input-lg" th:field="*{email}"
+									placeholder="Adresse e-mail" name="email" type="email"
+									maxlength="60" required> <span class="text-danger"
+									th:errors="*{email}"> </span>
+							</div>
+							<div class="form-group">
+								<input class="form-control input-lg" th:field="*{password}"
+									placeholder="Mot de passe: 8 à 30 caractères" id="password"
+									name="password" type="password" pattern=".{8,30}"
+									title="Votre mot de passe doit contenir entre 8 et 30 caractères"
+									required> <span class="text-danger"
+									th:errors="*{password}"> </span>
+							</div>
+							<div class="form-group" th:field="*{confirmPassword}">
+								<input class="form-control input-lg"
+									placeholder="Confirmez votre mot de passe" id="confirmPassword"
+									name="confirmPassword" type="password" required>
+							</div>
+							<div class="custom-control custom-checkbox">
+								<input class="custom-control-input" type="checkbox" id="terms"
+									required><label class="custom-control-label"
+									for="terms">J'ai lu et j'accepte&nbsp;<a
+									class="link-terms" data-toggle="modal" href="#myModal">politique
+										de confidentialité</a>
+								</label>
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="myModal" role="dialog">
+								<div class="modal-dialog modal-lg ">
+									<!-- Modal content-->
+									<div class="modal-content">
+
+										<div class="modal-header">
+											<h4>Politique de confidentialité</h4>
+											<button type="button" class="close" data-dismiss="modal">X</button>
+										</div>
+
+										<div class="modal-body">
+											<p>Introduction Dans le cadre de son activité, la société
+												[Société], dont le siège social est situé au [Adresse du
+												siège social], est amenée à collecter et à traiter des
+												informations dont certaines sont qualifiées de "données
+												personnelles". [Société] attache une grande importance au
+												respect de la vie privée, et n’utilise que des donnes de
+												manière responsable et confidentielle et dans une finalité
+												précise. Données personnelles Sur le site web [Adresse du
+												site], il y a 2 types de données susceptibles d’être
+												recueillies : Les données transmises directement Ces données
+												sont celles que vous nous transmettez directement, via un
+												formulaire de contact ou bien par contact direct par email.
+												Sont obligatoires dans le formulaire de contact le champs «
+												prénom et nom », « entreprise ou organisation » et « email
+												». Les données collectées automatiquement Lors de vos
+												visites, une fois votre consentement donné, nous pouvons
+												recueillir des informations de type « web analytics »
+												relatives à votre navigation, la durée de votre
+												consultation, votre adresse IP, votre type et version de
+												navigateur. La technologie utilisée est le cookie.
+												Utilisation des données Les données que vous nous
+												transmettez directement sont utilisées dans le but de vous
+												re-contacter et/ou dans le cadre de la demande que vous nous
+												faites. Les données « web analytics » sont collectées de
+												forme anonyme (en enregistrant des adresses IP anonymes) par
+												Google Analytics, et nous permettent de mesurer l'audience
+												de notre site web, les consultations et les éventuelles
+												erreurs afin d’améliorer constamment l’expérience des
+												utilisateurs. Ces données sont utilisées par [Société],
+												responsable du traitement des données, et ne seront jamais
+												cédées à un tiers ni utilisées à d’autres fins que celles
+												détaillées ci-dessus. Base légale Les données personnelles
+												ne sont collectées qu’après consentement obligatoire de
+												l’utilisateur. Ce consentement est valablement recueilli
+												(boutons et cases à cocher), libre, clair et sans équivoque.
+												Durée de conservation Les données seront sauvegardées durant
+												une durée maximale de 3 ans. Cookies Voici la liste des
+												cookies utilisées et leur objectif : Cookies Google
+												Analytics (liste exhaustive) : Web analytics [Nom du cookie]
+												: Permet de garder en mémoire le fait que vous acceptez les
+												cookies afin de ne plus vous importuner lors de votre
+												prochaine visite. Vos droits concernant les données
+												personnelles Vous avez le droit de consultation, demande de
+												modification ou d’effacement sur l’ensemble de vos données
+												personnelles. Vous pouvez également retirer votre
+												consentement au traitement de vos données. Contact délégué à
+												la protection des données [Nom du contact] - [Idéalement au
+												moins 2 façons de le contacter]</p>
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-success"
+												data-dismiss="modal">Fermer</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Modal -->
+
+							<div>
+								<small>Tous les champs sont obligatoires</small>
+							</div>
+							<button class="btn-lg btn-success my-4 btn-block" type="submit">
+								S'enregistrer</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<footer th:replace="users/fragments/common :: common-footer"></footer>
+	<script th:src="@{/js/users/pwdValidation.js}"></script>
+	<script>
+		/* Mise par défaut du genre Monsieur*/
+		document.getElementById('radioM').checked = true;
+	</script>
+</body>
+</html>

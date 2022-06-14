@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+/* first carousel */
+.first-carousel {
+	margin: 0.5em;
+}
+
+.first-carousel .carousel-caption {
+	color: black;
+	text-shadow:0.1em 0.1em #808080;
+}
+
+.carousel-control-next, .carousel-control-prev {
+	/* Inverser les couleurs des icones des images (.svg) de next et previous  du carousel de Bootstrap*/
+	filter: invert(90%);
+}
+/* second carousel */
+.panel-body .img-fluid {
+	border-radius: 0.5em;
+}
+
+.products {
+	margin-top: 1em;
+	margin-bottom:1em;
+}
+
+.second-carousel {
+	margin-top: 1em;
+}

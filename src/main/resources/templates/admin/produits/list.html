@@ -1,0 +1,67 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="admin/fragments/common :: admin-head" />
+</head>
+<body>
+	<header th:replace="admin/fragments/common :: nav-admin"></header>
+	<section class="container-fluid">
+
+		<div class="great-title">
+			<span>Liste des Produits</span>
+			<hr>
+		</div>
+
+		<div>
+			<div class="row text-center">
+				<div class="col-md-12 mx-auto my-3">
+					<table class="table">
+						<tr>
+							<th>Image</th>
+							<th>Code Barre</th>
+							<th>Nom</th>
+							<th>Description</th>
+							<th>Quantité</th>
+							<th>PrixHT</th>
+							<th>Date Création</th>
+							<th>Date Modification</th>
+							<th>Action</th>
+						</tr>
+						<tr th:each="prod : ${produits}">
+
+							<td><img width="50" height="50"
+								th:attr="alt=${prod.name},src=${'data:image/png;base64,' + prod.imageBase64}"></td>
+							<td th:text="${prod.barcode}">barcode</td>
+							<td th:text="${prod.name}">nom</td>
+							<td th:text="${prod.description}">description</td>
+							<td th:text="${prod.stock}">stock</td>
+							<td th:text="${#numbers.formatCurrency(prod.prixHT)}">prix</td>
+							<td
+								th:text="${#temporals.format(prod.creationDate,'dd/MM/yyyy')}">date</td>
+
+							<td
+								th:text="${#temporals.format(prod.updatingDate,'dd/MM/yyyy')}">date</td>
+
+							<td>
+								<div class="btn-group">
+									<a class="btn btn-primary"
+										th:href="@{/admin/produits/show/{produitId}(produitId=${prod.id})}">Afficher</a>
+
+									<a class="btn btn-warning"
+										th:href="@{/admin/produits/update(id=${prod.id})}">Mettre
+										à jour</a>
+									<button class="btn btn-danger deleteBtn"
+										th:data-href="@{/admin/produits/delete/{produitId}(produitId=${prod.id})}">Supprimer</button>
+
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<footer th:replace="admin/fragments/common :: admin-footer"></footer>
+
+</body>
+</html>

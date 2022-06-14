@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:replace="users/fragments/common :: common-head" />
+<link th:href="@{/css/users/contact.css}" rel="stylesheet" />
+</head>
+<body>
+
+	<header th:replace="users/fragments/common :: common-header"></header>
+
+	<section class="container">
+
+		<div class="container great-title">
+			<span>Contact</span>
+			<hr>
+		</div>
+
+		<form class="container contact">
+
+			<div class="row">
+				<div class="col">
+					<label>nom</label> <input type="text" class="form-control">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label>prenom</label> <input type="text" class="form-control">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+
+					<label>demande</label> <input type="text" class="form-control">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label>numéro telephone</label> <input type="text"
+						class="form-control">
+				</div>
+			</div>
+			<p></p>
+			<button type="submit" class="btn btn-primary">Envoyer</button>
+		</form>
+
+		<div class="container google-map">
+			<div class="row">
+				<div class="col"></div>
+				<div class="col">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2622.6572520318646!2d2.3886552156759744!3d48.902868879291944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66c365415ee13%3A0xcff5bf6476b9f6b3!2s35%20Avenue%20Jean%20Jaur%C3%A8s%2C%2093300%20Aubervilliers!5e0!3m2!1sfr!2sfr!4v1582700662286!5m2!1sfr!2sfr"></iframe>
+
+				</div>
+				<div class="col"></div>
+			</div>
+		</div>
+	</section>
+	<footer th:replace="users/fragments/common :: common-footer"></footer>
+</body>
+</html>
